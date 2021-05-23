@@ -1,4 +1,4 @@
-test
+2021/5/23 nodejs quiz
 
 (1) 請問下列程式執行後的結果為何？為什麼？
 
@@ -13,12 +13,10 @@ console.log("start");
 
 console.log("end"); 
 
-依序出現下列結果: 
-start
-IIFE (立即執行)
-但console.log end 一秒之後才出現Timeout
-end
-Timeout
+依序由上到下出現下列結果: 
+先console出start IIFE 
+接著console出end 
+一秒過後才印出Timeout
 
 
 (2) 請問下列程式執行的結果為何？為什麼？
@@ -34,18 +32,13 @@ console.log("start");
 
 console.log("end");
 
-依序出現下列結果:
-start
-IIFE
-end
-Timeout
-
+依序由上到下印出下列結果:
 先印出start 
-接著執行function()
+接著會執行function()
 再印出IIFE
-接著執行setTimeout後會被丟到webapis
-等印出end event loop會確認stack是否沒有東西
-最後才印出Timeout
+再來先執行setTimeout後 (會被丟到webapis/queue暗樁)
+等印出end, event loop會回頭確認stack是否有東西,若沒有的話最後才印出Timeout
+ps: 雖然設定了0秒,不過因為先執行了setTimeout才沒有先印出Timeout;反而先印出end 
 
 (3) 請問下列程式執行的結果為何？為什麼？
 
@@ -61,10 +54,10 @@ const foo = () => {
 
 foo();
 
-
-console.log foo後才呼叫宣告的bar 與 baz 
-
-
+依序出現下列結果:
+console出foo 
+         bar 
+         baz
 
 (4) 請問下列程式執行的結果為何？為什麼？
 
@@ -80,4 +73,9 @@ const foo = () => {
 
 foo();
 
-先console.log foo後 
+依序出現下列結果:
+先console.log foo後
+接著執行setTimeout 與第二題一樣
+setTimeout會被丟到暗樁(webapis/queue)
+然後印出baz
+等event loop確認stack沒東西後才會印出bar
