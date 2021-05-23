@@ -1,0 +1,22 @@
+{
+  "name": "nodejs-mfee16",
+  "version": "1.0.0",
+  "description": "abc",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fran0628/nodejs-mfee16.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fran0628/nodejs-mfee16/issues"
+  },
+  "homepage": "https://github.com/fran0628/nodejs-mfee16#readme",
+  "dependencies": {
+    "axios": "^0.21.1"
+  }
+}
