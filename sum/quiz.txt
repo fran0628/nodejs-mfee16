@@ -27,7 +27,7 @@ console.log("start");
   console.log("IIFE");
   setTimeout(function () {
     console.log("Timeout");
-  }, 0);
+  }, 0); 
 })();
 
 console.log("end");
@@ -38,6 +38,12 @@ IIFE
 end
 Timeout
 
+先印出start 
+接著執行function()
+再印出IIFE
+接著執行setTimeout後會被丟到webapis
+等印出end event loop會確認stack是否沒有東西
+最後才印出Timeout
 
 (3) 請問下列程式執行的結果為何？為什麼？
 
