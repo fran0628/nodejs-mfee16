@@ -13,8 +13,8 @@ console.log("end");
 
 依序出現下列結果: 
 start
-IIFE
-但console.log end 之後才出現Timeout
+IIFE (立即執行)
+但console.log end 一秒之後才出現Timeout
 end
 Timeout
 
