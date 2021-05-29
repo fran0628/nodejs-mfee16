@@ -31,7 +31,7 @@
         // async: true / false
         xhr.open("GET","http://34.217.120.25:3000",true);
         // xhr.addEventListener('load',function(){})
-        xhr.onload = function(response){
+        xhr.onload = function(){
             message.innerText = `非同步請求 load ${this.responseText}`;
         };
         xhr.send();
@@ -40,7 +40,7 @@
         var xhr = new XMLHttpRequest();
         // HTTP nethod:GET, POST,...
         xhr.open("GET","http://34.217.120.25:3000",false);
-        xhr.onload = function(response){
+        xhr.onload = function(){
             message.innerText = `同步請求 load ${this.responseText}`;
         };
         xhr.send(); //send 後callback
