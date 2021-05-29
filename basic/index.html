@@ -27,7 +27,10 @@
     asyncBtn.addEventListener("click",function(){
         var xhr = new XMLHttpRequest();
         // HTTP nethod:GET, POST,...
+        // URL 
+        // async: true / false
         xhr.open("GET","http://34.217.120.25:3000",true);
+        // xhr.addEventListener('load',function(){})
         xhr.onload = function(response){
             message.innerText = `非同步請求 load ${this.responseText}`;
         };
@@ -40,7 +43,7 @@
         xhr.onload = function(response){
             message.innerText = `同步請求 load ${this.responseText}`;
         };
-        xhr.send();
+        xhr.send(); //send 後callback
     });
 </script>
 </html>
