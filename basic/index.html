@@ -23,19 +23,18 @@
     countBtn.addEventListener("click",function(){
         count.innerText =parseInt(count.innerText,10)+1
     });
-    
     asyncBtn.addEventListener("click",function(){
-        var xhr = new XMLHttpRequest();
-        // HTTP nethod:GET, POST,...
-        // URL 
-        // async: true / false
-        xhr.open("GET","http://34.217.120.25:3000",true);
-        // xhr.addEventListener('load',function(){})
+        var xhr = new XMLHttpRequest();        
+        xhr.open("GET","http://34.217.120.25:3000",true);        
         xhr.onload = function(){
             message.innerText = `非同步請求 load ${this.responseText}`;
         };
         xhr.send();
     });
+    // HTTP nethod:GET, POST,...
+    // URL 
+    // async: true / false
+    // xhr.addEventListener('load',function(){})
     syncBtn.addEventListener("click",function(){
         var xhr = new XMLHttpRequest();
         // HTTP nethod:GET, POST,...
