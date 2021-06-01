@@ -8,7 +8,6 @@ let doWork = function (job, timer, cb) {
   };
   
   // new Promise(function (resolve, reject) {});
-  //
   let doWorkPromise = function (job, timer, success) {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
