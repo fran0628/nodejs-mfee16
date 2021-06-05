@@ -1,13 +1,14 @@
 const axios = require("axios");
-//引入promise版本的fs 新版本才有的
-const fs = require("fs/promises"); // fs=file system
+const fs = require("fs"); // fs=file system
 const moment = require("moment"); // 抓每天的日期
+const Promise = require("bluebird");
+// console.log(Promise);
 
-//var promise = require("bluebird"); 
+// Promise.all();
 
 // function readFilePromise() {
 // return new Promise((resolve, reject) => {
-//     fs.readFile("stock.txt", "utf8", (err, data) => {
+//     fs.readFile("stock.txt", "utf-8", (err, data) => {
 //         if (err){
 //         reject(err);
 //         }
@@ -16,20 +17,22 @@ const moment = require("moment"); // 抓每天的日期
 // });
 // }
 
-// 因為是promise版本
-fs.readFile("stock.txt", "utf8")
+// 用bluebird包callback版本的readfile
+const readFileBlue = Promise.promisify(fs.readFile);
+
+readFileBlue("stock.txt", "utf-8")
 .then((stockCode) => {
     console.log("stockCode: ", stockCode);
     return axios.get("https://www.twse.com.tw/exchangeReport/STOCK_DAY", {
         params: {
         response: "json",
-        date:"20210530",
+        date: moment,
         stockNo: stockCode,
         },
     });
 })
 .then((response)=>{
-    if (response.data.stat === "OK") {
+    if (response.data.state === "OK") {
         console.log(response.data.date);
         console.log(response.data.title);
     }
