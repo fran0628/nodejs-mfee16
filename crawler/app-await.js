@@ -33,12 +33,10 @@ return new Promise((resolve, reject) => {
         console.log(response.data.date);
         console.log(response.data.title);
       } else {
-        // TODO 應該要處理查不回來
+        
       }
     } catch (err) {
       console.error(err);
-      // TODO
-      // 通知管理員來處理
-      // 過幾分鐘後重試
+      
     }
   })();
