@@ -17,8 +17,13 @@ const Promise = require("bluebird");
 // });
 // }
 
-// 用bluebird包callback版本的readfile
+// 方法一: 一個函式一個函式包 用bluebird包callback版本的readfile
 const readFileBlue = Promise.promisify(fs.readFile);
+
+//方法二: 把fs所有的function都包成promise
+//但是原本的函示名稱後面會被加上Async
+//const fsBlue = Promise.promisify(fs.readFile);
+//fsBlue readFile 替換成.readFileAsync("stock.txt", "utf-8")
 
 readFileBlue("stock.txt", "utf-8")
 .then((stockCode) => {

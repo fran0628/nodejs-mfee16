@@ -19,7 +19,7 @@ readFilePromise()
     return axios.get("https://www.twse.com.tw/exchangeReport/STOCK_DAY", {
         params: {
         response: "json",
-        date:"20210530",
+        date:"20210530",//moment().format("YYYYMMDD"),
         stockNo: stockCode,
         },
     });
