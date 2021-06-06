@@ -2,13 +2,15 @@ const axios = require("axios");
 const fs = require("fs/promises");
 const moment = require("moment"); // 抓每天的日期
 const Promise = require("bluebird");
+require('dotenv').config()
 
 const mysql      = require('mysql');
 let connection = mysql.createConnection({
-  host     : 'localhost',
-  user     : 'root',
-  password : '',
-  database : 'mysqli',
+  host     :  process.env.DB_HOST,
+  port     :  process.env.DB_PORT,
+  user     : process.env.DB_USER,
+  password : process.env.DB_PASSWORD,
+  database : process.env.DB_NAME,
   });
 
 connection = Promise.promisifyAll(connection); 
@@ -25,15 +27,13 @@ connection = Promise.promisifyAll(connection);
       console.log("Start to query name");
       let response = await axios.get(
         `https://www.twse.com.tw/zh/api/codeQuery?query=${stockCode}`);
-        
-    
-      };
-    let answer = (response.data.suggestions.shift());
-    let answers = answer.split('\t');
-    if(answers.length>1){
-      connection.queryAsync(`INSERT INTO stock (stock_id,stock_name) VALUES ('${answers[0]},${answers[1]}');`
-      );
+        let answer = (response.data.suggestions.shift());
+        let answers = answer.split('\t');
+        if(answers.length>1){
+        connection.queryAsync(`INSERT INTO stock (stock_id,stock_name) VALUES ('${answers[0]},${answers[1]}');`
+        );
       }
+    };
 } catch (err) {
     console.error(err);
 } finally {
