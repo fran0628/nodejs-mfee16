@@ -1,9 +1,11 @@
 const http = require("http"); //無需install 是內建的
+const { URL } = require("url");
+// const fs = require ("fs/promises");
 //createServer (Listener)
 //處裡連線 req請求 res回覆請求
 const server = http.createServer((req,res) => {
     console.log("Status : Connect Successful!");
-
+    console.log(req.url);
 
     res.statusCode = 200; //2xx 3xx 4xx 5xx 
     // res.write("hello nodejs server.js");
@@ -17,7 +19,8 @@ const server = http.createServer((req,res) => {
         res.end("This is a test page step2");
         break;
         case "/about":
-        res.end("This is about US xoxoxo");
+        // let name = url.searchParams.get("name") || "Dear Friend";
+        res.end(`This is about US 這是關於我們! ${name} xoxoxo`);
         break;
         default:
         res.writeHead(404);
