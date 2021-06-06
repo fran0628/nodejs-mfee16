@@ -2,9 +2,9 @@ const axios = require("axios");
 const fs = require("fs/promises");
 const moment = require("moment"); // 抓每天的日期
 const Promise = require("bluebird");
-const mysql      = require('mysql');
 
-const connection = mysql.createConnection({
+const mysql      = require('mysql');
+let connection = mysql.createConnection({
   host     : 'localhost',
   user     : 'root',
   password : '',
@@ -25,7 +25,9 @@ connection = Promise.promisifyAll(connection);
       console.log("Start to query name");
       let response = await axios.get(
         `https://www.twse.com.tw/zh/api/codeQuery?query=${stockCode}`);
-    };
+        
+    
+      };
     let answer = (response.data.suggestions.shift());
     let answers = answer.split('\t');
     if(answers.length>1){
