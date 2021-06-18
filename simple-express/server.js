@@ -6,6 +6,8 @@ let app = express(); //利用express 建立一個 exp applicaiton app
 //自動幫你為public裡面的檔案建立路由
 app.use(express.static("public"));
 
+app.set("views","views");
+app.set("view engine", "pug");
 
 app.use(function (req, res ,next){
     let current = new Date();
@@ -14,12 +16,14 @@ app.use(function (req, res ,next){
 })
 
 app.get("/",function (req,res) {
-    res.send("hello express");
+    //res.send("hello express");
+    res.render("index");
 });
 
 //express由上而下執行,找到就停住
-app.get("/about",function (req,res) {
-    res.send("hello about express");
+app.get("/about",function (req,res,next) {
+    //res.send("hello about express");
+    res.render("about");
 });
 
 app.get("/test",function (req,res) {
