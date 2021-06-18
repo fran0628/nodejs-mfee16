@@ -77,9 +77,12 @@ connection = Promise.promisifyAll(connection);
     // +13.00 不需要先處理 + - 號
     
   } catch (err) {
-    console.error("我是 catch");
+    // console.error("我是 catch");
     console.error(err);
   } finally {
     connection.end();
   }
 })();
+
+// 6/18 上課更新 
+// 用promise.all做的話可以節省時間 程式跑起來更有效率
